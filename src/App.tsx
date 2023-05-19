@@ -1,16 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {RouterProvider,createBrowserRouter} from "react-router-dom";
 
+
+
+
+const router = createBrowserRouter([
+    {path: '/', element: `All posts`, errorElement: `Error`},
+    {path: '/creator', element: `About me`, errorElement: `Error`},
+    {path: '/user/:id', element: `Details User (info users and post lists)`, errorElement: `Error`},
+])
 function App() {
     return (
-        <div className="App">
-            <h1>
-                Hi there! I start develop test application!
-            </h1>
-            <br/>
-            <code>let's go!</code>
-        </div>
+        <RouterProvider router={router} />
     );
 }
 
