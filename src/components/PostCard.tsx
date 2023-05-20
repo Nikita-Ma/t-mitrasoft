@@ -7,72 +7,80 @@ import {RootState} from "../redux/reducers/rootReducer";
 
 // TODO Write full structure redo ANY on Normally type
 interface postsType {
-    posts: any[]
+    posts: any[];
+    comments: any[]
 }
 
 
 const PostCard: React.FC = () => {
 
-    const [viewComment, setViewComment] = useState<Boolean>(false);
+    const [selectedPostId, setSelectedPostId] = useState<String | null>('');
 
     const postState: postsType = useSelector((state: RootState) => state.post);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('useEffect')
-        dispatch({type: ActionType.POSTS_REQUEST_LOADING})
-    }, [])
+        console.log("useEffect");
+        dispatch({type: ActionType.POSTS_REQUEST_LOADING});
+    }, [postState.comments]);
 
     const handlerShowComments = (id: string) => {
-        console.log(id)
-    }
+        const updStringId = `${selectedPostId}` + ` ${id}`
+        console.log(updStringId)
+        setSelectedPostId(updStringId);
+        dispatch({type: ActionType.COMMENTS_REQUEST_LOADING, payload: id});
+    };
 
 
     return (
         <>
             {
-                postState.posts.map(item => {
+                postState.posts.map(itemPost => {
                         return (
-                            <Card style={{width: "60rem", marginTop: '20px'}} >
+                            <Card style={{width: "60rem", marginTop: "40px"}} key={itemPost.id}>
                                 <Card.Body>
 
                                     <Card.Title className="fs-3">
-                                        {item.title}
+                                        {itemPost.title}
                                     </Card.Title>
 
                                     <Card.Text>
-                                        {item.body}
+                                        {itemPost.body}
                                     </Card.Text>
                                 </Card.Body>
 
                                 <ListGroup className="list-group-flush">
 
                                     <ListGroup.Item className="d-flex justify-content-between">
-                                        <Link to={`/user/id-1231254125-124214`}>
+                                        <Link to={`/user/${itemPost.userId}`}>
                                             <Image width={"45px"} height={"45px"}
                                                    style={{borderRadius: "50%"}}
                                                    src={"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
                                                    alt={"image user avatar"}/>
                                         </Link>
                                         {/*TODO Refactor Draft Action*/}
-                                        <Button onClick={() => handlerShowComments(item.id)}>
+                                        <Button onClick={() => handlerShowComments(itemPost.id)}>
                                             Comments
                                         </Button>
 
+                                        {/*Comments Block*/}
                                     </ListGroup.Item>
                                     {
-                                        viewComment ? <ListGroup>
-                                                <ListGroup.Item>
-                                                    <span className="fs-6">Email</span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci,
-                                                        odit.</p>
-                                                </ListGroup.Item>
-                                            </ListGroup>
-                                            : null
+                                        postState.comments.map((item) => {
+                                            if (item.postId === itemPost.id) {
+                                                return (
+                                                    <ListGroup style={{marginTop: '15px'}}>
+                                                        <ListGroup.Item>
+                                                            <span className="fs-6">{item.email}</span>
+                                                            <p>{item.body}</p>
+                                                        </ListGroup.Item>
+                                                    </ListGroup>
+                                                )
+                                            }
+                                        })
                                     }
-
                                 </ListGroup>
-                            </Card>)
+                            </Card>);
                     }
                 )
             }

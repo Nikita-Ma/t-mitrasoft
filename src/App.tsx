@@ -2,9 +2,9 @@ import React from 'react';
 import {RouterProvider,createBrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
-import {AllPosts} from "./Pages/AllPosts";
-import {Creator} from "./Pages/Creator";
-import {UserProfile} from "./Pages/UserProfile";
+import {AllPosts} from "./pages/AllPosts";
+import {Creator} from "./pages/Creator";
+import {UserProfile} from "./pages/UserProfile";
 
 // create routes
 const router = createBrowserRouter([
