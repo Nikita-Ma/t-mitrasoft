@@ -7,4 +7,25 @@ interface CreatorProfileActiveAction {
     type: ActionType.CREATOR_PROFILE_ACTIVE;
 }
 
-export type Action = AllPostsActiveAction | CreatorProfileActiveAction
+
+// * POST REQUEST
+interface PostsRequestLoading {
+    type: ActionType.POSTS_REQUEST_LOADING
+}
+
+interface PostsRequestSuccess {
+    type: ActionType.POSTS_REQUEST_SUCCESS,
+    payload: any[]
+}
+
+interface PostsRequestError {
+    type: ActionType.POSTS_REQUEST_ERROR,
+    payload: any
+}
+
+// * export interface
+type PostAction = PostsRequestLoading | PostsRequestSuccess | PostsRequestError
+
+//
+
+export type Action = AllPostsActiveAction | CreatorProfileActiveAction | PostAction

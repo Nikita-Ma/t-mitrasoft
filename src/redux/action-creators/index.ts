@@ -1,6 +1,5 @@
 export const testFunc = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts')
     const data = await res.json()
-    console.log(data)
     return data
 }
