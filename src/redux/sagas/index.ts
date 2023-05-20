@@ -8,7 +8,7 @@ export function* workerSaga(): Generator<any, any, any> {
 }
 
 export function* watchClickSaga() {
-    yield takeEvery(ActionType.EXAMPLE, workerSaga);
+    // yield takeEvery(ActionType.EXAMPLE, workerSaga);
 }
 
 export default function* rootSaga() {

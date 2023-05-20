@@ -1,15 +1,18 @@
 import {Container, Image, Navbar, NavDropdown} from "react-bootstrap";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../redux/reducers/rootReducer";
 
-
-// TODO Fix active menu rewrite on Context
 export const Header = () => {
+    // * Connect Redux
+    const usersState = useSelector((state: RootState) => state.users);
+    const dispatch  = useDispatch()
+    // React
     const [isOpen, setIsOpen] = useState<Boolean>(false);
-    const [isActive, setIsActive] = useState({
-        creator: false,
-        allPosts: true
-    });
+
+    const {postActiveNav, profActiveNav} = usersState
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -22,28 +25,22 @@ export const Header = () => {
                              onClick={toggleMenu}>
 
                     <NavDropdown.Item
-                        onClick={() => setIsActive({
-                            creator: false,
-                            allPosts: true
-                        })}
-                        className={isActive.allPosts ? 'bg-primary' : 'none'}
+                        onClick={() => dispatch({type: 'ALL_POSTS_ACTIVE'})}
+                        className={postActiveNav ? 'bg-primary' : 'none'}
 
                     >
                         <Link to={"/"}
-                              style={{textDecoration: "none", color: isActive.allPosts ? 'white' : 'black'}}>
+                              style={{textDecoration: "none", color: postActiveNav ? 'white' : 'black'}}>
                             All posts
                         </Link>
                     </NavDropdown.Item>
 
                     <NavDropdown.Item
-                        onClick={() => setIsActive({
-                            creator: true,
-                            allPosts: false
-                        })}
-                        className={isActive.creator ? 'bg-primary' : 'none'}
+                        onClick={() => dispatch({type: 'CREATOR_PROFILE_ACTIVE'})}
+                        className={profActiveNav ? 'bg-primary' : 'none'}
                     >
                         <Link to={"/creator"}
-                              style={{textDecoration: "none", color: isActive.creator ? 'white' : 'black'}}>
+                              style={{textDecoration: "none", color: profActiveNav ? 'white' : 'black'}}>
                             Creator
                         </Link>
                     </NavDropdown.Item>

@@ -1,7 +1,10 @@
 import {ActionType} from "../action-types";
 
-interface ExapleActiom {
-    type: ActionType.EXAMPLE;
+interface AllPostsActiveAction {
+    type: ActionType.ALL_POSTS_ACTIVE;
+}
+interface CreatorProfileActiveAction {
+    type: ActionType.CREATOR_PROFILE_ACTIVE;
 }
 
-export type Action = ExapleActiom
+export type Action = AllPostsActiveAction | CreatorProfileActiveAction

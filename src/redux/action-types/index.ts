@@ -1,3 +1,4 @@
 export enum ActionType {
-    EXAMPLE = 'Example',
+    ALL_POSTS_ACTIVE = 'ALL_POSTS_ACTIVE',
+    CREATOR_PROFILE_ACTIVE = 'CREATOR_PROFILE_ACTIVE',
 }
