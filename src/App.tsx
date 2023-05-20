@@ -8,9 +8,9 @@ import {User} from "./pages/User";
 
 // create routes
 const router = createBrowserRouter([
-    {path: '/', element: <AllPosts/>, errorElement: `Error`},
-    {path: '/creator', element: <Creator/>, errorElement: `Error`},
-    {path: '/user/:id', element: <User/>, errorElement: `Error`},
+    {path: '/', element: <AllPosts/>, errorElement: `Error Posts Page`},
+    {path: '/creator', element: <Creator/>, errorElement: `Error Creator Page`},
+    {path: '/user/:id', element: <User/>, errorElement: `Error User Page`},
 ])
 function App() {
     return (

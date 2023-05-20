@@ -25,7 +25,7 @@ export const usersReducer = (state = initialState, action: Action): UserState =>
         case ActionType.CREATOR_PROFILE_ACTIVE:
             return {...state, profActiveNav: true, postActiveNav: false}
         case ActionType.USERS_REQUEST_LOADING:
-            return {...state, loading: true}
+            return {...state, usersList: [], loading: true}
         case ActionType.USERS_REQUEST_SUCCESS:
             return {...state, loading: false, error: null, usersList: [...action.payload]}
         case ActionType.USERS_REQUEST_ERROR:

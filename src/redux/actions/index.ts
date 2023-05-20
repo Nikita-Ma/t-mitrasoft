@@ -9,7 +9,7 @@ interface CreatorProfileActiveAction {
 }
 
 
-// * POST
+// * @POST
 interface PostsRequestLoading {
     type: ActionType.POSTS_REQUEST_LOADING
 }
@@ -28,7 +28,7 @@ interface PostsRequestError {
 type PostAction = PostsRequestLoading | PostsRequestSuccess | PostsRequestError
 
 
-// * Comments
+// * @Comments
 interface CommentsRequestLoading {
     type: ActionType.COMMENTS_REQUEST_LOADING,
     payload: string
@@ -49,7 +49,7 @@ interface CommentsRequestError {
 export type CommentAction = CommentsRequestLoading | CommentsRequestSuccess | CommentsRequestError
 //
 
-// * Users
+// * @Users
 interface UsersRequestLoading {
     type: ActionType.USERS_REQUEST_LOADING,
     payload: string

@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useState} from "react";
-import {Button, Card, Image, ListGroup} from "react-bootstrap";
+import React, {useEffect} from "react";
+import {Alert, Button, Card, Image, ListGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {ActionType} from "../redux/action-types";
@@ -7,6 +7,7 @@ import {RootState} from "../redux/reducers/rootReducer";
 
 // TODO Write full structure redo ANY on Normally type
 interface postsType {
+    loading: boolean
     posts: any[];
     comments: any[]
 }
@@ -14,26 +15,33 @@ interface postsType {
 
 const PostCard: React.FC = () => {
 
-    const [selectedPostId, setSelectedPostId] = useState<String | null>('');
-
+    // * Connect Redux
     const postState: postsType = useSelector((state: RootState) => state.post);
     const dispatch = useDispatch();
 
+    // * Send Action  (POST LOADING)
     useEffect(() => {
-        console.log("useEffect");
         dispatch({type: ActionType.POSTS_REQUEST_LOADING});
     }, [postState.comments]);
 
+    // * Send Action  (COMMENTS LOADING) with payload (id)
     const handlerShowComments = (id: string) => {
-        const updStringId = `${selectedPostId}` + ` ${id}`
-        console.log(updStringId)
-        setSelectedPostId(updStringId);
         dispatch({type: ActionType.COMMENTS_REQUEST_LOADING, payload: id});
     };
 
 
     return (
         <>
+            {/* alert window */}
+
+            {postState.loading ?
+                <Alert variant={'warning'}>
+                    Page loading..
+                </Alert>
+                : null}
+
+            {/* post block */}
+
             {
                 postState.posts.map(itemPost => {
                         return (

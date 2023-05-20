@@ -1,5 +1,5 @@
 import PostCard from "../components/PostCard";
-import {Col, Container, Row} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 import {Header} from "../components/Header";
 
 export const AllPosts: React.FC = () => {
@@ -8,7 +8,7 @@ export const AllPosts: React.FC = () => {
             <Header/>
             <Container>
                 <Row className="d-flex justify-content-center">
-                <PostCard/>
+                <PostCard key={'bad-key' + Math.random()}/>
                 </Row>
             </Container>
         </>
