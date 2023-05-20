@@ -1,16 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {RouterProvider,createBrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
+import {AllPosts} from "./pages/AllPosts";
+import {Creator} from "./pages/Creator";
+import {User} from "./pages/User";
 
+// create routes
+const router = createBrowserRouter([
+    {path: '/', element: <AllPosts/>, errorElement: `Error Posts Page`},
+    {path: '/creator', element: <Creator/>, errorElement: `Error Creator Page`},
+    {path: '/user/:id', element: <User/>, errorElement: `Error User Page`},
+])
 function App() {
     return (
-        <div className="App">
-            <h1>
-                Hi there! I start develop test application!
-            </h1>
-            <br/>
-            <code>let's go!</code>
-        </div>
+        <Provider store={store}>
+         <RouterProvider router={router} />
+        </Provider>
     );
 }
 
