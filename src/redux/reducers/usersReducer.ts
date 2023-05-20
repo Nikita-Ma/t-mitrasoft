@@ -3,11 +3,11 @@ import {Action} from "../actions";
 import {ActionType} from "../action-types";
 
 const initialState = {
-    postActiveNav: false,
+    postActiveNav: true,
     profActiveNav: false,
     loading: false,
     error: null,
-    data: [],
+    usersList: [],
 };
 
 interface UserState {
@@ -15,7 +15,7 @@ interface UserState {
     profActiveNav: boolean,
     loading: boolean,
     error: string | null;
-    data: any[]
+    usersList: any[]
 }
 
 export const usersReducer = (state = initialState, action: Action): UserState => {
@@ -24,6 +24,13 @@ export const usersReducer = (state = initialState, action: Action): UserState =>
             return {...state, postActiveNav: true, profActiveNav: false,}
         case ActionType.CREATOR_PROFILE_ACTIVE:
             return {...state, profActiveNav: true, postActiveNav: false}
+        case ActionType.USERS_REQUEST_LOADING:
+            return {...state, loading: true}
+        case ActionType.USERS_REQUEST_SUCCESS:
+            return {...state, loading: false, error: null, usersList: [...action.payload]}
+        case ActionType.USERS_REQUEST_ERROR:
+            return {...state, loading: false, error: action.payload, usersList: []}
+
         default:
             return state
     }

@@ -4,13 +4,13 @@ import {Provider} from "react-redux";
 import {store} from "./redux/store";
 import {AllPosts} from "./pages/AllPosts";
 import {Creator} from "./pages/Creator";
-import {UserProfile} from "./pages/UserProfile";
+import {User} from "./pages/User";
 
 // create routes
 const router = createBrowserRouter([
     {path: '/', element: <AllPosts/>, errorElement: `Error`},
     {path: '/creator', element: <Creator/>, errorElement: `Error`},
-    {path: '/user/:id', element: <UserProfile/>, errorElement: `Error`},
+    {path: '/user/:id', element: <User/>, errorElement: `Error`},
 ])
 function App() {
     return (
