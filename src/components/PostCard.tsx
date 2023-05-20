@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {Button, Card, Image, ListGroup} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
-const PostCard = () => {
+const PostCard:React.FC = () => {
 
-    const [viewComment, setViewComment] = useState(false);
+    const [viewComment, setViewComment] = useState<Boolean>(false);
     return (
         <Card style={{width: "60rem"}}>
             <Card.Body>
@@ -22,10 +23,12 @@ const PostCard = () => {
             <ListGroup className="list-group-flush">
 
                 <ListGroup.Item className="d-flex justify-content-between">
-                    <Image width={"45px"} height={"45px"}
-                           style={{borderRadius: "50%"}}
-                           src={"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
-                           alt={"image user avatar"}/>
+                    <Link to={`/user/id-1231254125-124214`}>
+                        <Image width={"45px"} height={"45px"}
+                               style={{borderRadius: "50%"}}
+                               src={"https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}
+                               alt={"image user avatar"}/>
+                    </Link>
                     {/*TODO Refactor Draft Action*/}
                     <Button onClick={() => setViewComment(!viewComment)}>
                         Comments

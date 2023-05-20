@@ -1,4 +1,4 @@
-export const UserProfile = () => {
+export const UserProfile:React.FC = () => {
 	return (
 		<>
 		User Profile
